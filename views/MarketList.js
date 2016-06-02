@@ -6,15 +6,12 @@ import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
-import SelectCategory from '../components/SelectCategory.js';
-
 const needs = [
   AppActions.setUniverseId,
-  AppActions.setCategoryId,
-  AppActions.setMarketId
+  AppActions.setCategoryId
 ];
 
-class SegmentList extends React.Component {
+class MarketList extends React.Component {
 
   constructor(params) {
     super(params);
@@ -22,7 +19,7 @@ class SegmentList extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'segment'])) {
+    if (!this.props.state.getIn(['app', 'marketId']) || !this.props.state.getIn(['app', 'market'])) {
       fetchNeeds(this.needs, this.props);
     }
   }
@@ -30,21 +27,21 @@ class SegmentList extends React.Component {
   render() {
     return (
       <div>
-        <h1>SelectSegment / or product</h1>
-        <Link to="/universe/0/category/0/market/0/segment/0">Segment 0</Link> <br />
-        <Link to="/universe/0/category/0/market/0/segment/0/product/10116551">Product 0</Link>
+        <h1>SelectMarket</h1>
+        <Link to="/universe/0/category/0/market/0">Market 0</Link>
+
       </div>
     );
   }
 
 }
 
-SegmentList.propTypes = {
+MarketList.propTypes = {
   actions: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired
 };
 
-SegmentList.needs = needs;
+MarketList.needs = needs;
 
 function mapStateToProps(state) {
   return { state };
@@ -60,4 +57,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SegmentList);
+)(MarketList);

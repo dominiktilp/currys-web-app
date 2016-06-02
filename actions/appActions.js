@@ -24,7 +24,7 @@ export function loadUniverseInfo({ universeId }) {
         return response.json();
       })
       .then((json) => {
-        dispatch({
+        return dispatch({
           type: types.LOADED_UNIVERSE_INFO,
           universe: json.universe
         });
@@ -32,7 +32,6 @@ export function loadUniverseInfo({ universeId }) {
 
   };
 }
-
 
 export function setCategoryId({ categoryId }) {
   return (dispatch) => {
@@ -100,6 +99,39 @@ export function loadMarketInfo({ marketId }) {
   };
 }
 
+export function setSegmentId({ segmentId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.SET_SEGMENT_ID,
+      segmentId
+    });
+
+    return dispatch(loadSegmentInfo({ segmentId }));
+  };
+}
+
+export function loadSegmentInfo({ segmentId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.LOADING_SEGMENT_INFO
+    });
+
+    return fetch(`http://localhost:3000/api/segment/${segmentId}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch({
+          type: types.LOADED_SEGMENT_INFO,
+          segment: json.segment
+        });
+      });
+
+  };
+}
+
 export function setProductId({ productId }) {
   return (dispatch) => {
 
@@ -124,6 +156,7 @@ export function loadProductInfo({ productId }) {
         return response.json();
       })
       .then((json) => {
+        console.log(json);
         dispatch({
           type: types.LOADED_PRODUCT_INFO,
           product: json.product

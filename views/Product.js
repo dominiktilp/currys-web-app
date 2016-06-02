@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
@@ -17,6 +18,12 @@ class Product extends React.Component {
   constructor(params) {
     super(params);
     this.needs = needs;
+  }
+
+  componentDidMount() {
+    if (!this.props.state.getIn(['app', 'productId']) || !this.props.state.getIn(['app', 'product'])) {
+      fetchNeeds(this.needs, this.props);
+    }
   }
 
   render() {

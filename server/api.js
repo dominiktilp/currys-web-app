@@ -4,7 +4,6 @@ const router = express.Router();
 
 
 router.get('/universe/:universeId', (req, res) => {
-  const date = moment();
   const data = {
     universe: {
       id: 0
@@ -15,7 +14,6 @@ router.get('/universe/:universeId', (req, res) => {
 });
 
 router.get('/category/:categoryId', (req, res) => {
-  const date = moment();
   const data = {
     category: {
       id: 0
@@ -25,8 +23,18 @@ router.get('/category/:categoryId', (req, res) => {
   res.json(data);
 });
 
+router.get('/segment/:segmentId', (req, res) => {
+  const data = {
+    segment: {
+      id: 0
+    }
+  };
+
+  res.json(data);
+});
+
+
 router.get('/market/:marketId', (req, res) => {
-  const date = moment();
   const data = {
     market: {
       id: 0
@@ -37,14 +45,14 @@ router.get('/market/:marketId', (req, res) => {
 });
 
 router.get('/product/:productId', (req, res) => {
-  const date = moment();
-  const data = {
-    product: {
-      id: 0
-    }
-  };
 
-  res.json(data);
+  fetch('http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php/product/'+req.params.productId).then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    res.json({product: json});
+  });
+
 });
 
 

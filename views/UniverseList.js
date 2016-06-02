@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import * as AppActions from '../actions/appActions.js';
 
 
-class UniverseList extends React.Component {
+class UniverseList extends React.Component {  
 
   render() {
     const message = this.props.state.getIn(['app', 'lastPayment', 'state']) === 'OK' ?

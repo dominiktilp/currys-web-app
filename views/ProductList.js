@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
@@ -24,8 +25,7 @@ class ProductList extends React.Component {
     return (
       <div>
         <h1>SelectProduct</h1>
-        <Link to="/universe/0/category/0/segment/0/product/0">Product 0</Link>
-
+        <Link to="/universe/0/category/0/market/0/segment/0/product/10116551">Product 0</Link>
       </div>
     );
   }

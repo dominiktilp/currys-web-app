@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
@@ -16,6 +17,12 @@ class CategoryList extends React.Component {
   constructor(params) {
     super(params);
     this.needs = needs;
+  }
+
+  componentDidMount() {
+    if (!this.props.state.getIn(['app', 'universeId']) || !this.props.state.getIn(['app', 'universe'])) {
+      fetchNeeds(this.needs, this.props);
+    }
   }
 
   render() {
