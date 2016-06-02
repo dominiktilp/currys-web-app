@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/universe', (req, res) => {
   //?clearCache=y
-  fetch('http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php/ucms').then((response) => {
+  fetch('http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php/ucms?clearCache=y').then((response) => {
     return response.json();
   })
   .then((json) => {

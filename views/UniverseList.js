@@ -34,7 +34,7 @@ class UniverseList extends React.Component {
           <Link to={"/universe/"+universeData.id}>{universeData.name}</Link>
         </div>
         <div className="caret">
-          >
+          &gt;
         </div>
       </div>
     )
