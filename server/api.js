@@ -10,7 +10,7 @@ const apiBase = "http://safarm02.fo-currys.fo.dev.dixons.com/api/index.php";
 
 router.get('/universe', (req, res) => {
   //?clearCache=y
-  fetch('http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php/ucms?clearCache=y').then((response) => {
+  fetch(apiBase+'/product/ucms').then((response) => {
     return response.json();
   })
   .then((json) => {

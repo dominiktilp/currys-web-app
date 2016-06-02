@@ -21,7 +21,7 @@ export function loadUniverseList() {
 }
 
 
-export function setUniverseId(universeId) {
+export function setUniverseId({ universeId }) {
   return (dispatch) => {
 
     dispatch({
