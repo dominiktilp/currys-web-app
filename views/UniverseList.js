@@ -6,6 +6,18 @@ import * as AppActions from '../actions/appActions.js';
 
 
 class UniverseList extends React.Component {
+  renderUniverse(universeData) {
+    return(
+      <div className="universe-select">
+        <div className="text-wrapper">
+          Kitchen appliances
+        </div>
+        <div className="caret">
+          >
+        </div>
+      </div>
+    )
+  }
 
   render() {
     const message = this.props.state.getIn(['app', 'lastPayment', 'state']) === 'OK' ?
@@ -14,7 +26,7 @@ class UniverseList extends React.Component {
 
     return (
       <div>
-        <h1>SelectUniverse</h1>
+        {[1,2,3,4].map(this.renderUniverse)}
         <Link to="/universe/0">Universe 0</Link>
       </div>
     );

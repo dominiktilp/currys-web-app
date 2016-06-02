@@ -4,6 +4,9 @@ function App(props) {
 
   return (
     <div className="container">
+      <div className="header">
+        <img src="https://uc.uxpin.com/files/43189/48881/currys_logo.png" />
+      </div>
       {props.main}
     </div>
   );
