@@ -44,7 +44,6 @@ class MarketList extends React.Component {
       } else {
         linkTarget = linkBase
       }
-      console.log("LINK TARGET", linkTarget);
 
       return(
         <div className="universe-select">
