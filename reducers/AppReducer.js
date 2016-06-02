@@ -23,6 +23,7 @@ export default (state = initialState, action) => {
         segment: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_UNIVERSE_LIST:
@@ -59,6 +60,7 @@ export default (state = initialState, action) => {
         segment: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_CATEGORY_INFO:
@@ -80,6 +82,7 @@ export default (state = initialState, action) => {
         segment: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_MARKET_INFO:
@@ -99,6 +102,7 @@ export default (state = initialState, action) => {
         segmen: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_SEGMENT_INFO:
@@ -110,6 +114,17 @@ export default (state = initialState, action) => {
       return state.merge({
         loading: false,
         segment: action.segment
+      });
+
+    case types.LOADING_SEGMENT_PRODUCTS:
+      return state.merge({
+        loading: true
+      });
+
+    case types.LOADED_SEGMENT_PRODUCTS:
+      return state.merge({
+        loading: false,
+        products: action.products
       });
 
     case types.SET_PRODUCT_ID:

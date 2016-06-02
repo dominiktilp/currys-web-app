@@ -148,6 +148,28 @@ export function loadSegmentInfo({ segmentId }) {
           type: types.LOADED_SEGMENT_INFO,
           segment: json.segment
         });
+        dispatch(loadSegmentProducts({ segmentId }));
+      })
+
+  };
+}
+
+export function loadSegmentProducts({ segmentId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.LOADING_SEGMENT_PRODUCTS
+    });
+
+    return fetch(`http://localhost:3000/api/segment/${segmentId}/products`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch({
+          type: types.LOADED_SEGMENT_PRODUCTS,
+          products: json.products
+        });
       });
 
   };

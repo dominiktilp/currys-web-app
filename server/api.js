@@ -41,16 +41,32 @@ router.get('/category/:categoryId', (req, res) => {
 });
 
 router.get('/segment/:segmentId', (req, res) => {
-  fetch(apiBase+'/segment/'+req.params.segmentId).then((response) => {
-    if (response.status == 200) {
-      return response.json();
+  fetch(apiBase+'/segment/'+req.params.segmentId).then((data) => {
+    if (data.status == 200) {
+      return data.json();
     } else {
       return undefined;
     }
   })
-  .then((json) => {
-    if (json) {
-      res.json({product: json});
+  .then((segment) => {
+    if (segment) {
+      res.json({segment});
+    }
+    res.status(404).send("Not found");
+  });
+});
+
+router.get('/segment/:segmentId/products', (req, res) => {
+  fetch(apiBase+'/segment/'+req.params.segmentId+'/products').then((data) => {
+    if (data.status == 200) {
+      return data.json();
+    } else {
+      return undefined;
+    }
+  })
+  .then((products) => {
+    if (products) {
+      res.json({products});
     }
     res.status(404).send("Not found");
   });
