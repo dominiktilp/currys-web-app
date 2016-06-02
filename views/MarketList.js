@@ -7,6 +7,7 @@ import { fetchNeeds } from '../utils/fetchComponentData';
 import * as AppActions from '../actions/appActions.js';
 
 const needs = [
+  AppActions.loadUniverseList,
   AppActions.setUniverseId,
   AppActions.setCategoryId
 ];
@@ -24,12 +25,37 @@ class MarketList extends React.Component {
     }
   }
 
+
+  renderMarkets(marketData) {
+    if (!this.props.state.getIn(['app', 'universeId'])) {
+      return (
+        <div className="appLoader">
+        ...loading...
+        </div>
+      );
+    } else {
+      const universeId = this.props.state.getIn(['app', 'universeId']);
+      return(
+        <div className="universe-select">
+          <div className="text-wrapper">
+            <Link to={"/universe/"+marketData.parentId+"/category/"+marketData.parentId}>{marketData.name}</Link>
+          </div>
+          <div className="caret">
+            &gt;
+          </div>
+        </div>
+      )
+    }
+  }
+
   render() {
+    //{universeList.toJS().market[categoryId].map(this.renderMarkets)}
+    const universeList = this.props.state.getIn(['app', 'universeList'])
+    const categoryId = this.props.params.categoryId
+    // console.log(universeList.toJS());
     return (
       <div>
-        <h1>SelectMarket</h1>
-        <Link to="/universe/0/category/0/market/0">Market 0</Link>
-
+        {universeList.toJS().market[categoryId].map(this.renderMarkets)}
       </div>
     );
   }
