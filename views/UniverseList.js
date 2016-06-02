@@ -3,14 +3,35 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as AppActions from '../actions/appActions.js';
+import { fetchNeeds } from '../utils/fetchComponentData';
+
+const needs = [
+  AppActions.loadUniverseList
+];
 
 
 class UniverseList extends React.Component {
+
+
+
+  constructor(params) {
+    super(params);
+    this.needs = needs;
+  }
+
+
+  componentWillMount() {
+    if (!this.props.state.getIn(['app', 'universeList'])) {
+      fetchNeeds(this.needs, this.props);
+    }
+  }
+
+
   renderUniverse(universeData) {
     return(
       <div className="universe-select">
         <div className="text-wrapper">
-          Kitchen appliances
+          <Link to={"/universe/"+universeData.id}>{universeData.name}</Link>
         </div>
         <div className="caret">
           >
@@ -20,14 +41,14 @@ class UniverseList extends React.Component {
   }
 
   render() {
-    const message = this.props.state.getIn(['app', 'lastPayment', 'state']) === 'OK' ?
-      'Payment sucessful' : undefined
-    ;
+    const universeList = this.props.state.getIn(['app', 'universeList'])
+    if (!universeList) {
+      return <div>Loading...</div>
+    }
 
     return (
       <div>
-        {[1,2,3,4].map(this.renderUniverse)}
-        <Link to="/universe/0">Universe 0</Link>
+        {universeList.toJS().universe.map(this.renderUniverse)}
       </div>
     );
   }
@@ -45,6 +66,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    dispatch,
     actions: bindActionCreators(AppActions, dispatch)
   };
 }

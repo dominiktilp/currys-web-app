@@ -25,6 +25,18 @@ export default (state = initialState, action) => {
         product: undefined,
       });
 
+    case types.LOADING_UNIVERSE_LIST:
+      return state.merge({
+        loading: true
+      });
+
+    case types.LOADED_UNIVERSE_LIST:
+      return state.merge({
+        loading: false,
+        universeList: action.universeList
+      });
+
+
     case types.LOADING_UNIVERSE_INFO:
       return state.merge({
         loading: true

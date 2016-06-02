@@ -3,6 +3,18 @@ import moment from 'moment';
 const router = express.Router();
 
 
+router.get('/universe', (req, res) => {
+  //?clearCache=y
+  fetch('http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php/ucms').then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    res.json({universeList: json});
+  });
+
+});
+
+
 router.get('/universe/:universeId', (req, res) => {
   const data = {
     universe: {

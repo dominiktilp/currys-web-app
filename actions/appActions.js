@@ -1,6 +1,27 @@
 import * as types from '../constants/ActionTypes.js';
 
-export function setUniverseId({ universeId }) {
+export function loadUniverseList() {
+  return (dispatch) => {
+    dispatch({
+      type: types.LOADING_UNIVERSE_LIST
+    });
+
+    return fetch(`http://localhost:3000/api/universe`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        return dispatch({
+          type: types.LOADED_UNIVERSE_LIST,
+          universeList: json.universeList
+        });
+      });
+
+  };
+}
+
+
+export function setUniverseId() {
   return (dispatch) => {
 
     dispatch({
