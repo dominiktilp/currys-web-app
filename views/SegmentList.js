@@ -8,10 +8,11 @@ import * as AppActions from '../actions/appActions.js';
 import SelectCategory from '../components/SelectCategory.js';
 
 const needs = [
-  AppActions.setUniverseId
+  AppActions.setUniverseId,
+  AppActions.setCategoryId
 ];
 
-class Universe extends React.Component {
+class SegmentList extends React.Component {
 
   constructor(params) {
     super(params);
@@ -21,20 +22,22 @@ class Universe extends React.Component {
   render() {
     return (
       <div>
-        <h2>Select category</h2>
-        
+        <h1>SelectSegment / or product</h1>
+        <Link to="/universe/0/category/0/segment/0">Segment 0</Link>
+        <Link to="/universe/0/category/0/segment/0/product/0">Product 0</Link>
+
       </div>
     );
   }
 
 }
 
-Universe.propTypes = {
+SegmentList.propTypes = {
   actions: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired
 };
 
-Universe.needs = needs;
+SegmentList.needs = needs;
 
 function mapStateToProps(state) {
   return { state };
@@ -50,4 +53,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Universe);
+)(SegmentList);

@@ -25,4 +25,27 @@ router.get('/category/:categoryId', (req, res) => {
   res.json(data);
 });
 
+router.get('/market/:marketId', (req, res) => {
+  const date = moment();
+  const data = {
+    market: {
+      id: 0
+    }
+  };
+
+  res.json(data);
+});
+
+router.get('/product/:productId', (req, res) => {
+  const date = moment();
+  const data = {
+    product: {
+      id: 0
+    }
+  };
+
+  res.json(data);
+});
+
+
 export default router;

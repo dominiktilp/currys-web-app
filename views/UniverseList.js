@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import * as AppActions from '../actions/appActions.js';
 
 
-class Page extends React.Component {
+class UniverseList extends React.Component {
 
   render() {
     const message = this.props.state.getIn(['app', 'lastPayment', 'state']) === 'OK' ?
@@ -14,15 +14,14 @@ class Page extends React.Component {
 
     return (
       <div>
-        <h1>Currys web app</h1>
-        <h3>{message}</h3>
-        <Link to="/universe/0">Select Universe</Link>
+        <h1>SelectUniverse</h1>
+        <Link to="/universe/0">Universe 0</Link>
       </div>
     );
   }
 }
 
-Page.propTypes = {
+UniverseList.propTypes = {
   actions: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired
 };
@@ -41,4 +40,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Page);
+)(UniverseList);

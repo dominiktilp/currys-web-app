@@ -66,3 +66,69 @@ export function loadCategoryInfo({ categoryId }) {
 
   };
 }
+
+export function setMarketId({ marketId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.SET_MARKET_ID,
+      marketId
+    });
+
+    return dispatch(loadMarketInfo({ marketId }));
+  };
+}
+
+export function loadMarketInfo({ marketId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.LOADING_MARKET_INFO
+    });
+
+    return fetch(`http://localhost:3000/api/market/${marketId}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch({
+          type: types.LOADED_MARKET_INFO,
+          market: json.market
+        });
+      });
+
+  };
+}
+
+export function setProductId({ productId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.SET_PRODUCT_ID,
+      productId
+    });
+
+    return dispatch(loadProductInfo({ productId }));
+  };
+}
+
+export function loadProductInfo({ productId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.LOADING_PRODUCT_INFO
+    });
+
+    return fetch(`http://localhost:3000/api/product/${productId}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        dispatch({
+          type: types.LOADED_PRODUCT_INFO,
+          product: json.product
+        });
+      });
+
+  };
+}

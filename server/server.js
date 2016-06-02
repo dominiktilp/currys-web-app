@@ -17,8 +17,6 @@ import api from './api';
 import 'isomorphic-fetch';
 import bodyParser from 'body-parser';
 
-
-
 // initialize webpack HMR
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
