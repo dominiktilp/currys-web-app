@@ -18,6 +18,7 @@ class CategoryList extends React.Component {
   constructor(params) {
     super(params);
     this.needs = needs;
+    this.renderCategories = this.renderCategories.bind(this);
   }
 
   componentDidMount() {
@@ -27,16 +28,25 @@ class CategoryList extends React.Component {
   }
 
   renderCategories(categoryData) {
-    return(
-      <div className="universe-select">
-        <div className="text-wrapper">
-          <Link to={"/category/"+categoryData.id}>{categoryData.name}</Link>
+    if (!this.props.state.getIn(['app', 'universeId'])) {
+      return (
+        <div className="appLoader">
+        ...loading...
         </div>
-        <div className="caret">
-          &gt;
+      );
+    } else {
+      const universeId = this.props.state.getIn(['app', 'universeId']);
+      return(
+        <div className="universe-select">
+          <div className="text-wrapper">
+            <Link to={"/universe/"+universeId+"/category/"+categoryData.id}>{categoryData.name}</Link>
+          </div>
+          <div className="caret">
+            &gt;
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 
 
