@@ -50,7 +50,6 @@ class MarketList extends React.Component {
   }
 
   render() {
-    //{universeList.toJS().market[categoryId].map(this.renderMarkets)}
     const universeList = this.props.state.getIn(['app', 'universeList'])
     const categoryId = this.props.params.categoryId
     // console.log(universeList.toJS());
