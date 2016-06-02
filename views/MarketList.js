@@ -17,6 +17,7 @@ class MarketList extends React.Component {
   constructor(params) {
     super(params);
     this.needs = needs;
+    this.renderMarkets = this.renderMarkets.bind(this);
   }
 
   componentDidMount() {
@@ -34,11 +35,11 @@ class MarketList extends React.Component {
         </div>
       );
     } else {
-      const universeId = this.props.state.getIn(['app', 'universeId']);
+      const universeId = this.props.params.universeId
       return(
         <div className="universe-select">
           <div className="text-wrapper">
-            <Link to={"/universe/"+marketData.parentId+"/category/"+marketData.parentId}>{marketData.name}</Link>
+            <Link to={"/universe/"+universeId+"/category/"+marketData.parentId+"/market/"+marketData.id}>{marketData.name}</Link>
           </div>
           <div className="caret">
             &gt;
