@@ -5,12 +5,12 @@ import url from 'url';
 
 const router = express.Router();
 
-const apiBase = "http://safarm02.fo-currys.fo.dev.dixons.com/api/index.php";
-//const apiBase = "http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php";
+//const apiBase = "http://safarm02.fo-currys.fo.dev.dixons.com/api/index.php";
+const apiBase = "http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php";
 
 router.get('/universe', (req, res) => {
   //?clearCache=y
-  fetch(apiBase+'/product/ucms').then((response) => {
+  fetch(apiBase+'/ucms').then((response) => {
     return response.json();
   })
   .then((json) => {
@@ -41,13 +41,19 @@ router.get('/category/:categoryId', (req, res) => {
 });
 
 router.get('/segment/:segmentId', (req, res) => {
-  const data = {
-    segment: {
-      id: 0
+  fetch(apiBase+'/segment/'+req.params.segmentId).then((response) => {
+    if (response.status == 200) {
+      return response.json();
+    } else {
+      return undefined;
     }
-  };
-
-  res.json(data);
+  })
+  .then((json) => {
+    if (json) {
+      res.json({product: json});
+    }
+    res.status(404).send("Not found");
+  });
 });
 
 

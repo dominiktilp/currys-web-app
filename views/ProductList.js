@@ -22,12 +22,19 @@ class ProductList extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>SelectProduct</h1>
-        <Link to="/universe/0/category/0/market/0/segment/0/product/10116551">Product 0</Link>
-      </div>
-    );
+    if (!this.props.state.getIn(['app', 'product'])) {
+      return (
+        <div className="appLoader">
+        ...loading...
+        </div>
+      );
+    } else {
+      return (
+        <div>          
+          <Link to="/universe/0/category/0/market/0/segment/0/product/10116551">Product 0</Link>
+        </div>
+      );
+    }
   }
 
 }
