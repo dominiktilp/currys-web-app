@@ -26,15 +26,6 @@ class Product extends React.Component {
     }
   }
 
-<<<<<<< Updated upstream
-  render() {
-    return (
-      <div>
-        <h2>Product page</h2>
-
-      </div>
-    );
-=======
   rawDescription(description) {
     return { __html: description };
   }
@@ -83,7 +74,6 @@ class Product extends React.Component {
         </div>
       );
     };
->>>>>>> Stashed changes
   }
 
 }
