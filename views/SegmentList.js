@@ -26,7 +26,7 @@ class SegmentList extends React.Component {
 
 
   componentDidMount() {
-    if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'segment'])) {
+    if (!this.props.state.getIn(['app', 'marketId']) || !this.props.state.getIn(['app', 'market'])) {
       fetchNeeds(this.needs, this.props);
     }
   }

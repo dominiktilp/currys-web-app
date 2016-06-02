@@ -21,11 +21,10 @@ class MarketList extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.state.getIn(['app', 'marketId']) || !this.props.state.getIn(['app', 'market'])) {
+    if (!this.props.state.getIn(['app', 'categoryId']) || !this.props.state.getIn(['app', 'category'])) {
       fetchNeeds(this.needs, this.props);
     }
   }
-
 
   renderMarkets(marketData) {
     if (!this.props.state.getIn(['app', 'universeId'])) {
@@ -36,10 +35,21 @@ class MarketList extends React.Component {
       );
     } else {
       const universeId = this.props.params.universeId
+      const universeList = this.props.state.getIn(['app', 'universeList'])
+      const linkBase = "/universe/"+universeId+"/category/"+marketData.parentId+"/market/"+marketData.id
+      var linkTarget
+
+      if (universeList.toJS().segment[marketData.id].length == 1) {
+        linkTarget = linkBase+"/segment/"+universeList.toJS().segment[marketData.id][0].id
+      } else {
+        linkTarget = linkBase
+      }
+      console.log("LINK TARGET", linkTarget);
+
       return(
         <div className="universe-select">
           <div className="text-wrapper">
-            <Link to={"/universe/"+universeId+"/category/"+marketData.parentId+"/market/"+marketData.id}>{marketData.name}</Link>
+            <Link to={linkTarget}>{marketData.name}</Link>
           </div>
           <div className="caret">
             &gt;
