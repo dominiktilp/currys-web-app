@@ -84,6 +84,7 @@ function renderFullPage(html, initialState) {
     <!doctype html>
     <html lang="utf-8">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Currys Web App</title>
       </head>
       <body>

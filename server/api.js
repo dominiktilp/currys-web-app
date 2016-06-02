@@ -1,7 +1,12 @@
 import express from 'express';
 import moment from 'moment';
+
+import url from 'url';
+
 const router = express.Router();
 
+const apiBase = "http://safarm02.fo-currys.fo.dev.dixons.com/api/index.php";
+//const apiBase = "http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php";
 
 router.get('/universe', (req, res) => {
   //?clearCache=y
@@ -58,11 +63,18 @@ router.get('/market/:marketId', (req, res) => {
 
 router.get('/product/:productId', (req, res) => {
 
-  fetch('http://hrdlim01.fo-currys.fo.dev.dixons.com/api/index.php/product/'+req.params.productId).then((response) => {
-    return response.json();
+  fetch(apiBase+'/product/'+req.params.productId).then((response) => {
+    if (response.status == 200) {
+      return response.json();
+    } else {
+      return undefined;
+    }
   })
   .then((json) => {
-    res.json({product: json});
+    if (json) {
+      res.json({product: json});
+    }
+    res.status(404).send("Not found");
   });
 
 });
