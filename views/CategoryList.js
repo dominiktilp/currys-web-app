@@ -30,7 +30,7 @@ class CategoryList extends React.Component {
     return(
       <div className="universe-select">
         <div className="text-wrapper">
-          <Link to={"/category/"+categoryData.id}>{categoryData.name}</Link>
+          <Link to={"/universe/"+categoryData.parentId+"/category/"+categoryData.id}>{categoryData.name}</Link>
         </div>
         <div className="caret">
           &gt;
