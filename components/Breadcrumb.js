@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 const Breadcrumb = ({previousStep}) => {
   return (
-    <div className="arrow-back">
+    <div className="back-button">
       <Link to={previousStep}> ↩ </Link>
     </div>
   )
