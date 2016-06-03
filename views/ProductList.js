@@ -11,6 +11,7 @@ import SelectCategory from '../components/SelectCategory.js';
 const needs = [
   AppActions.setUniverseId,
   AppActions.setCategoryId,
+  AppActions.setMarketId,
   AppActions.setSegmentId
 ];
 
@@ -19,19 +20,47 @@ class ProductList extends React.Component {
   constructor(params) {
     super(params);
     this.needs = needs;
+    this.renderProduct = this.renderProduct.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'segment']) || !this.props.state.getIn(['app', 'segmentId']) != this.props.params.segmentId) {
+      fetchNeeds(this.needs, this.props);
+    }
+  }
+
+  renderProduct(product) {
+    const universeId = this.props.state.getIn(['app', 'universeId']);
+    const categoryId = this.props.state.getIn(['app', 'category', 'id']);
+    const marketId = this.props.state.getIn(['app', 'market', 'id']);
+    const segmentId = this.props.state.getIn(['app', 'segmentId']);
+    return (
+      <div className="productItem" key={product.id}>
+        <div className="productItemImage">
+          <img src={product.images[0]} />
+        </div>
+        <div className="productItemInfo">
+          <h2 className="productName">{product.name}</h2>
+          <div className="productId">{product.id}</div>
+          <div className="productPrice">£{Math.round(product.price,2)}</div>
+          <Link className="actionButton" to={"/universe/"+universeId+"/category/"+categoryId+"/market/"+marketId+"/segment/"+segmentId+"/product/"+product.id}>Tell me more</Link>
+        </div>
+      </div>
+    );
   }
 
   render() {
-    if (!this.props.state.getIn(['app', 'product'])) {
+    if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'products'])) {
       return (
         <div className="appLoader">
         ...loading...
         </div>
       );
     } else {
+      const products = this.props.state.getIn(['app', 'products']).toJS();
       return (
-        <div>          
-          <Link to="/universe/0/category/0/market/0/segment/0/product/10116551">Product 0</Link>
+        <div>
+          {products.results.map(this.renderProduct)}
         </div>
       );
     }

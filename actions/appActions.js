@@ -78,7 +78,7 @@ export function loadCategoryInfo({ categoryId }) {
         return response.json();
       })
       .then((json) => {
-        dispatch({
+        return dispatch({
           type: types.LOADED_CATEGORY_INFO,
           category: json.category
         });
@@ -90,7 +90,7 @@ export function loadCategoryInfo({ categoryId }) {
 export function setMarketId({ marketId }) {
   return (dispatch) => {
 
-    dispatch({
+    return dispatch({
       type: types.SET_MARKET_ID,
       marketId
     });
@@ -111,7 +111,7 @@ export function loadMarketInfo({ marketId }) {
         return response.json();
       })
       .then((json) => {
-        dispatch({
+        return dispatch({
           type: types.LOADED_MARKET_INFO,
           market: json.market
         });
@@ -148,6 +148,28 @@ export function loadSegmentInfo({ segmentId }) {
           type: types.LOADED_SEGMENT_INFO,
           segment: json.segment
         });
+        return dispatch(loadSegmentProducts({ segmentId }));
+      })
+
+  };
+}
+
+export function loadSegmentProducts({ segmentId }) {
+  return (dispatch) => {
+
+    dispatch({
+      type: types.LOADING_SEGMENT_PRODUCTS
+    });
+
+    return fetch(`http://localhost:3000/api/segment/${segmentId}/products`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        return dispatch({
+          type: types.LOADED_SEGMENT_PRODUCTS,
+          products: json.products
+        });
       });
 
   };
@@ -176,8 +198,7 @@ export function loadProductInfo({ productId }) {
       .then((response) => {
         return response.json();
       })
-      .then((json) => {
-        console.log(json);
+      .then((json) => {        
         dispatch({
           type: types.LOADED_PRODUCT_INFO,
           product: json.product

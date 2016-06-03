@@ -142,3 +142,41 @@ input {
   border-right-width: 0;
   color: #488020
 }
+
+.productItem {
+  display: flex;
+  flex-direction row
+  align-items: center;
+  margin-bottom: 20px
+  border-bottom: 1px solid #488020
+  .productItemImage {
+    grow: 1
+    padding: 10px
+    img {
+      width: 40vw
+    }
+  }
+  .productItemInfo {
+    grow: 2
+    padding: 0 15px
+    h2 {
+      font-size: 1.1rem;
+    }
+    .productPrice {
+      font-size: 1.2rem;
+      color: #c90404;
+      font-weight: bold
+      margin: 15px 0
+    }
+    .productId {
+      font-size: 0.8rem;
+    }
+    .actionButton {
+      background: #c90404;
+      color: white;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      margin-bottom: 10px
+    }
+  }
+}

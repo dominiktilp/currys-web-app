@@ -23,6 +23,7 @@ export default (state = initialState, action) => {
         segment: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_UNIVERSE_LIST:
@@ -42,8 +43,7 @@ export default (state = initialState, action) => {
         loading: true
       });
 
-    case types.LOADED_UNIVERSE_INFO:
-      console.log(action, action.type);
+    case types.LOADED_UNIVERSE_INFO:      
       return state.merge({
         loading: false,
         universe: action.universe
@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
 
     case types.SET_CATEGORY_ID:
       return state.merge({
-        categoryId: action.universeId,
+        categoryId: action.categoryId,
         category: undefined,
         marketId: undefined,
         market: undefined,
@@ -59,6 +59,7 @@ export default (state = initialState, action) => {
         segment: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_CATEGORY_INFO:
@@ -80,6 +81,7 @@ export default (state = initialState, action) => {
         segment: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_MARKET_INFO:
@@ -99,6 +101,7 @@ export default (state = initialState, action) => {
         segmen: undefined,
         productId: undefined,
         product: undefined,
+        products: undefined
       });
 
     case types.LOADING_SEGMENT_INFO:
@@ -110,6 +113,17 @@ export default (state = initialState, action) => {
       return state.merge({
         loading: false,
         segment: action.segment
+      });
+
+    case types.LOADING_SEGMENT_PRODUCTS:
+      return state.merge({
+        loading: true
+      });
+
+    case types.LOADED_SEGMENT_PRODUCTS:
+      return state.merge({
+        loading: false,
+        products: action.products
       });
 
     case types.SET_PRODUCT_ID:

@@ -21,7 +21,7 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.state.getIn(['app', 'productId']) || !this.props.state.getIn(['app', 'product'])) {
+    if (!this.props.state.getIn(['app', 'productId']) || !this.props.state.getIn(['app', 'product']) || !this.props.state.getIn(['app', 'productId']) != this.props.params.productId) {
       fetchNeeds(this.needs, this.props);
     }
   }
