@@ -6,7 +6,7 @@ import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
-import SelectCategory from '../components/SelectCategory.js';
+import Breadcrumb from '../components/Breadcrumb.js';
 
 const needs = [
   AppActions.setUniverseId,
@@ -58,8 +58,14 @@ class ProductList extends React.Component {
       );
     } else {
       const products = this.props.state.getIn(['app', 'products']).toJS();
+      const marketId = this.props.params.marketId
+      const universeId = this.props.params.universeId
+      const categoryId = this.props.params.categoryId
+      
+
       return (
         <div>
+          <Breadcrumb previousStep={"/universe/"+universeId+"/category/"+categoryId+"/market/"+marketId}/>
           {products.results.map(this.renderProduct)}
         </div>
       );

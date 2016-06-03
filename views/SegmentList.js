@@ -32,7 +32,7 @@ class SegmentList extends React.Component {
   }
 
   renderSegments(segmentData) {
-    if (!this.props.state.getIn(['app', 'universeId'])) {
+    if (!this.props.state.getIn(['app', 'universeList'])) {
       return (
         <div className="appLoader">
         ...loading...

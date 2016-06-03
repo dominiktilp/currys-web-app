@@ -62,6 +62,7 @@ class MarketList extends React.Component {
   render() {
     const universeList = this.props.state.getIn(['app', 'universeList'])
     const categoryId = this.props.params.categoryId
+    
     return (
       <div>
         <Breadcrumb previousStep={'/universe/'+this.props.params.universeId}/>

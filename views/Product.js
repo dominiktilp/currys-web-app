@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
+import Breadcrumb from '../components/Breadcrumb.js';
 
 const needs = [
   AppActions.setUniverseId,
@@ -48,8 +49,13 @@ class Product extends React.Component {
       let paragraphs = product.description.split("<br /><br />");
       const firstParagraph = paragraphs.pop();
       const restDesc = paragraphs.join("<br /><br />");
+      const marketId = this.props.params.marketId
+      const universeId = this.props.params.universeId
+      const categoryId = this.props.params.categoryId
+      const segmentId = this.props.params.segmentId
       return (
         <div>
+          <Breadcrumb previousStep={"/universe/"+universeId+"/category/"+categoryId+"/market/"+marketId+"/segment/"+segmentId} />
           <div className="productImage">
             <img src={product.images[0]} />
           </div>
