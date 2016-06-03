@@ -32,7 +32,8 @@ class ProductList extends React.Component {
   renderProduct(product) {
     const universeId = this.props.state.getIn(['app', 'universeId']);
     const categoryId = this.props.state.getIn(['app', 'category', 'id']);
-    const marketId = this.props.state.getIn(['app', 'market', 'id']);
+    // const marketId = this.props.state.getIn(['app', 'market', 'id']);
+    const marketId = this.props.params.marketId
     const segmentId = this.props.state.getIn(['app', 'segmentId']);
     return (
       <div className="productItem" key={product.id}>
