@@ -43,8 +43,7 @@ export default (state = initialState, action) => {
         loading: true
       });
 
-    case types.LOADED_UNIVERSE_INFO:
-      console.log(action, action.type);
+    case types.LOADED_UNIVERSE_INFO:      
       return state.merge({
         loading: false,
         universe: action.universe

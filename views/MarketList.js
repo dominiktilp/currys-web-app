@@ -27,7 +27,7 @@ class MarketList extends React.Component {
   }
 
   renderMarkets(marketData) {
-    if (!this.props.state.getIn(['app', 'universeId'])) {
+    if (!this.props.state.getIn(['app', 'universeId']) || !this.props.state.getIn(['app', 'universeList'])) {
       return (
         <div className="appLoader">
         ...loading...

@@ -11,6 +11,7 @@ import SelectCategory from '../components/SelectCategory.js';
 const needs = [
   AppActions.setUniverseId,
   AppActions.setCategoryId,
+  AppActions.setMarketId,
   AppActions.setSegmentId
 ];
 
@@ -23,9 +24,9 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'segment'])) {
+    if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'segment']) || !this.props.state.getIn(['app', 'segmentId']) != this.props.params.segmentId) {
       fetchNeeds(this.needs, this.props);
-    }    
+    }
   }
 
   renderProduct(product) {
