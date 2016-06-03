@@ -46,7 +46,7 @@ class MarketList extends React.Component {
       }
 
       return(
-        <div className="universe-select">
+        <div key={marketData.id} className="universe-select">
           <div className="text-wrapper">
             <Link to={linkTarget}>{marketData.name}</Link>
           </div>

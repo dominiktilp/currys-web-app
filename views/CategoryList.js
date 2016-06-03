@@ -37,7 +37,7 @@ class CategoryList extends React.Component {
     } else {
       const universeId = this.props.state.getIn(['app', 'universeId']);
       return(
-        <div className="universe-select">
+        <div key={categoryData.id} className="universe-select">
           <div className="text-wrapper">
             <Link to={"/universe/"+categoryData.parentId+"/category/"+categoryData.id}>{categoryData.name}</Link>
           </div>
