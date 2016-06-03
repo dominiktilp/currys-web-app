@@ -42,7 +42,7 @@ class SegmentList extends React.Component {
       const universeId = this.props.params.universeId
       const categoryId = this.props.params.categoryId
       return(
-        <div className="universe-select">
+        <div key={segmentData.id} className="universe-select">
           <div className="text-wrapper">
             <Link to={"/universe/"+universeId+"/category/"+categoryId+"/market/"+segmentData.parentId+"/segment/"+segmentData.id}>{segmentData.name}</Link>
           </div>

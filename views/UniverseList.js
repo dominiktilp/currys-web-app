@@ -29,7 +29,7 @@ class UniverseList extends React.Component {
 
   renderUniverse(universeData) {
     return(
-      <div className="universe-select">
+      <div key={universeData.id} className="universe-select">
         <div className="text-wrapper">
           <Link to={"/universe/"+universeData.id}>{universeData.name}</Link>
         </div>
