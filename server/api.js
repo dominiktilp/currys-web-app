@@ -21,23 +21,21 @@ router.get('/universe', (req, res) => {
 
 
 router.get('/universe/:universeId', (req, res) => {
-  const data = {
-    universe: {
-      id: 0
-    }
-  };
-
-  res.json(data);
+    fetch(apiBase+'/universe/'+req.params.universeId).then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      res.json({universe: json});
+    });
 });
 
 router.get('/category/:categoryId', (req, res) => {
-  const data = {
-    category: {
-      id: 0
-    }
-  };
-
-  res.json(data);
+    fetch(apiBase+'/category/'+req.params.categoryId).then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      res.json({category: json});
+    });
 });
 
 router.get('/segment/:segmentId', (req, res) => {
@@ -74,13 +72,14 @@ router.get('/segment/:segmentId/products', (req, res) => {
 
 
 router.get('/market/:marketId', (req, res) => {
-  const data = {
-    market: {
-      id: 0
-    }
-  };
 
-  res.json(data);
+    fetch(apiBase+'/market/'+req.params.marketId).then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      res.json({market: json});
+    });
+
 });
 
 router.get('/product/:productId', (req, res) => {

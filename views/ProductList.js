@@ -25,7 +25,7 @@ class ProductList extends React.Component {
   componentDidMount() {
     if (!this.props.state.getIn(['app', 'segmentId']) || !this.props.state.getIn(['app', 'segment'])) {
       fetchNeeds(this.needs, this.props);
-    }
+    }    
   }
 
   renderProduct(product) {
@@ -42,7 +42,7 @@ class ProductList extends React.Component {
           <h2 className="productName">{product.name}</h2>
           <div className="productId">{product.id}</div>
           <div className="productPrice">£{Math.round(product.price,2)}</div>
-          <Link className="actionButton" to={"/universe/"+universeId+"/category/"+categoryId+"/market/"+marketId+"/segment/"+segmentId}>Tell me more</Link>
+          <Link className="actionButton" to={"/universe/"+universeId+"/category/"+categoryId+"/market/"+marketId+"/segment/"+segmentId+"/product/"+product.id}>Tell me more</Link>
         </div>
       </div>
     );

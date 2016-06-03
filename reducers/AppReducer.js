@@ -52,7 +52,7 @@ export default (state = initialState, action) => {
 
     case types.SET_CATEGORY_ID:
       return state.merge({
-        categoryId: action.universeId,
+        categoryId: action.categoryId,
         category: undefined,
         marketId: undefined,
         market: undefined,
