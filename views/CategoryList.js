@@ -6,7 +6,7 @@ import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
-import SelectCategory from '../components/SelectCategory.js';
+import Breadcrumb from '../components/Breadcrumb.js';
 
 const needs = [
   AppActions.loadUniverseList,
@@ -56,6 +56,7 @@ class CategoryList extends React.Component {
 
     return (
       <div>
+        <Breadcrumb previousStep='/' />
         {universeList.toJS().category[universeId].map(this.renderCategories)}
       </div>
     );

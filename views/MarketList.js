@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
+import Breadcrumb from '../components/Breadcrumb.js';
 
 const needs = [
   AppActions.loadUniverseList,
@@ -64,6 +65,7 @@ class MarketList extends React.Component {
     // console.log(universeList.toJS());
     return (
       <div>
+        <Breadcrumb previousStep={'/universe/'+this.props.params.universeId}/>
         {universeList.toJS().market[categoryId].map(this.renderMarkets)}
       </div>
     );

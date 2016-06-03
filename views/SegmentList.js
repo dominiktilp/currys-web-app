@@ -6,7 +6,7 @@ import { fetchNeeds } from '../utils/fetchComponentData';
 
 import * as AppActions from '../actions/appActions.js';
 
-import SelectCategory from '../components/SelectCategory.js';
+import Breadcrumb from '../components/Breadcrumb.js';
 
 const needs = [
   AppActions.loadUniverseList,
@@ -58,8 +58,12 @@ class SegmentList extends React.Component {
   render() {
     const universeList = this.props.state.getIn(['app', 'universeList'])
     const marketId = this.props.params.marketId
+    const universeId = this.props.params.universeId
+    const categoryId = this.props.params.categoryId
+
     return (
       <div>
+        <Breadcrumb previousStep={"/universe/"+universeId+"/category/"+categoryId} />
         {universeList.toJS().segment[marketId].map(this.renderSegments)}
       </div>
     );
